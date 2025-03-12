@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carlos' Portfolio</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Netlify Identity Script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <header>
@@ -18,11 +21,30 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <p>This is where you introduce yourself.</p>
+
+        <!-- Netlify Identity Login/Logout Buttons -->
+        <button onclick="netlifyIdentity.open()">Login / Signup</button>
+        <button onclick="netlifyIdentity.logout()">Logout</button>
     </main>
+
     <footer>
         <p>© 2025 Carlos Campos</p>
     </footer>
+
+    <!-- JavaScript for Redirecting Users After Login -->
+    <script>
+        netlifyIdentity.on("login", (user) => {
+            console.log("User logged in:", user);
+            window.location.href = "dashboard.html"; // Redirect to a protected page after login
+        });
+
+        netlifyIdentity.on("logout", () => {
+            console.log("User logged out");
+            window.location.href = "index.html"; // Redirect to home after logout
+        });
+    </script>
 </body>
 </html>
